@@ -8,6 +8,29 @@ const content = document.getElementById("content");
 const passwordForm = document.getElementById("password-form");
 const passwordInput = document.getElementById("password-input");
 const passwordMessage = document.getElementById("password-message");
+const heartLayer = document.getElementById("heart-layer");
+
+function renderHearts() {
+  if (!heartLayer) {
+    return;
+  }
+
+  const heartCount = 22;
+  heartLayer.innerHTML = "";
+
+  for (let index = 0; index < heartCount; index += 1) {
+    const heart = document.createElement("span");
+    heart.className = "floating-heart";
+    heart.textContent = "❤";
+    heart.style.setProperty("--left", `${Math.random() * 100}%`);
+    heart.style.setProperty("--delay", `${Math.random() * 6}s`);
+    heart.style.setProperty("--duration", `${8 + Math.random() * 8}s`);
+    heart.style.setProperty("--size", `${12 + Math.random() * 18}px`);
+    heart.style.setProperty("--drift", `${-18 + Math.random() * 36}px`);
+    heart.style.setProperty("--opacity", `${0.12 + Math.random() * 0.28}`);
+    heartLayer.appendChild(heart);
+  }
+}
 
 function isUnlocked() {
   return sessionStorage.getItem(accessStorageKey) === "true";
@@ -232,6 +255,7 @@ function init() {
   }
 
   passwordForm.addEventListener("submit", handlePasswordSubmit);
+  renderHearts();
 
   if (page === "letter") {
     renderLetterPage();
