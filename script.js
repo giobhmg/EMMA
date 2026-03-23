@@ -1,5 +1,4 @@
 const accessStorageKey = "emma-romantic-site-unlocked";
-const letterStorageKey = "emma-romantic-site-letter";
 
 const config = window.APP_CONFIG || {};
 const page = document.body.dataset.page;
@@ -40,86 +39,23 @@ function handlePasswordSubmit(event) {
   passwordMessage.textContent = "Password non corretta. Riprova con calma.";
 }
 
-function getSavedLetter() {
-  const savedLetter = localStorage.getItem(letterStorageKey);
-
-  if (!savedLetter) {
-    return config.letter;
-  }
-
-  return savedLetter
-    .split("\n")
-    .map((paragraph) => paragraph.trim())
-    .filter(Boolean);
-}
-
 function renderLetterPage() {
   const siteTitle = document.getElementById("site-title");
   const siteSubtitle = document.getElementById("site-subtitle");
   const heroQuote = document.getElementById("hero-quote");
   const letterBody = document.getElementById("letter-body");
-  const editLetterButton = document.getElementById("edit-letter-button");
-  const letterEditorPanel = document.getElementById("letter-editor-panel");
-  const letterEditor = document.getElementById("letter-editor");
-  const saveLetterButton = document.getElementById("save-letter-button");
-  const resetLetterButton = document.getElementById("reset-letter-button");
-  const letterEditorMessage = document.getElementById("letter-editor-message");
-
-  function renderLetter(letterParagraphs = getSavedLetter()) {
-    letterBody.innerHTML = "";
-
-    letterParagraphs.forEach((paragraph) => {
-      const element = document.createElement("p");
-      element.textContent = paragraph;
-      letterBody.appendChild(element);
-    });
-  }
-
-  function updateEditorMessage(message) {
-    letterEditorMessage.textContent = message;
-  }
-
-  function toggleEditor() {
-    letterEditorPanel.classList.toggle("hidden");
-    updateEditorMessage("");
-
-    if (!letterEditorPanel.classList.contains("hidden")) {
-      letterEditor.value = getSavedLetter().join("\n");
-    }
-  }
-
-  function saveLetterEdits() {
-    const paragraphs = letterEditor.value
-      .split("\n")
-      .map((paragraph) => paragraph.trim())
-      .filter(Boolean);
-
-    if (!paragraphs.length) {
-      updateEditorMessage("Scrivi almeno un paragrafo prima di salvare.");
-      return;
-    }
-
-    localStorage.setItem(letterStorageKey, paragraphs.join("\n"));
-    renderLetter(paragraphs);
-    updateEditorMessage("Lettera aggiornata in questo browser.");
-  }
-
-  function resetLetterEdits() {
-    localStorage.removeItem(letterStorageKey);
-    letterEditor.value = config.letter.join("\n");
-    renderLetter(config.letter);
-    updateEditorMessage("Testo originale ripristinato.");
-  }
 
   document.title = config.siteTitle;
   siteTitle.textContent = config.siteTitle;
   siteSubtitle.textContent = config.heroSubtitle;
   heroQuote.textContent = config.heroQuote;
-  renderLetter();
+  letterBody.innerHTML = "";
 
-  editLetterButton.addEventListener("click", toggleEditor);
-  saveLetterButton.addEventListener("click", saveLetterEdits);
-  resetLetterButton.addEventListener("click", resetLetterEdits);
+  config.letter.forEach((paragraph) => {
+    const element = document.createElement("p");
+    element.textContent = paragraph;
+    letterBody.appendChild(element);
+  });
 }
 
 function renderGalleryPage() {
@@ -131,8 +67,6 @@ function renderGalleryPage() {
   const galleryDots = document.getElementById("gallery-dots");
   const prevButton = document.getElementById("prev-button");
   const nextButton = document.getElementById("next-button");
-  const photoUpload = document.getElementById("photo-upload");
-  const uploadMessage = document.getElementById("upload-message");
 
   const galleryItems = Array.isArray(config.gallery) ? [...config.gallery] : [];
   let currentSlide = 0;
@@ -181,51 +115,6 @@ function renderGalleryPage() {
     });
   }
 
-  function updateUploadMessage(message) {
-    uploadMessage.textContent = message;
-  }
-
-  function handlePhotoUpload(event) {
-    const files = Array.from(event.target.files || []).filter((file) =>
-      file.type.startsWith("image/")
-    );
-
-    if (!files.length) {
-      updateUploadMessage("Nessuna immagine valida selezionata.");
-      return;
-    }
-
-    const startIndex = galleryItems.length;
-
-    files.forEach((file, fileIndex) => {
-      const reader = new FileReader();
-
-      reader.addEventListener("load", () => {
-        galleryItems.push({
-          src: reader.result,
-          alt: file.name,
-          title: `Ricordo ${startIndex + fileIndex + 1}`,
-          description: `Foto caricata dal tuo dispositivo: ${file.name}`,
-        });
-
-        buildGalleryDots();
-
-        if (galleryItems.length === startIndex + 1) {
-          currentSlide = startIndex;
-          renderGallery(currentSlide);
-        }
-
-        updateUploadMessage(
-          `${files.length} foto aggiunte in questa sessione del browser.`
-        );
-      });
-
-      reader.readAsDataURL(file);
-    });
-
-    photoUpload.value = "";
-  }
-
   document.title = `${config.siteTitle} | Foto`;
   galleryIntro.textContent = config.galleryIntro;
   buildGalleryDots();
@@ -240,8 +129,6 @@ function renderGalleryPage() {
     currentSlide = (currentSlide + 1) % galleryItems.length;
     renderGallery(currentSlide);
   });
-
-  photoUpload.addEventListener("change", handlePhotoUpload);
 }
 
 function init() {
