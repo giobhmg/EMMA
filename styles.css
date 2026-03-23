@@ -213,43 +213,95 @@ input {
   animation: fade-in 700ms ease both;
 }
 
-.hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.8fr);
-  gap: 20px;
-  align-items: stretch;
-  padding-top: 10px;
-}
-
-.hero__text,
-.hero__card {
-  padding: 32px;
-  border-radius: var(--radius-xl);
-}
-
-.hero__subtitle {
-  margin: 22px 0 0;
-  max-width: 56ch;
-  font-size: 1.05rem;
-}
-
-.hero__quote {
-  margin: 0;
-  font-size: 1.4rem;
-  line-height: 1.7;
-  color: var(--accent-strong);
-  font-family: "Baskerville", "Palatino Linotype", serif;
-}
-
 .panel {
   margin-top: 22px;
   border-radius: var(--radius-xl);
   padding: 32px;
 }
 
+.content .panel:first-child {
+  margin-top: 10px;
+}
+
 .section-heading h2 {
   margin: 0;
   font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.section-heading__actions {
+  margin-left: auto;
+}
+
+.button--tiny {
+  padding: 8px 14px;
+  font-size: 0.82rem;
+}
+
+.letter-panel {
+  position: relative;
+}
+
+.letter-panel__intro {
+  margin: 20px 0 0;
+  max-width: 60ch;
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 1.04rem;
+}
+
+.letter-panel__footer {
+  margin-top: 26px;
+}
+
+.editor-panel {
+  border: 1px solid rgba(142, 73, 94, 0.14);
+}
+
+.editor-panel__intro,
+.editor-panel__message {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.editor-panel__textarea {
+  width: 100%;
+  min-height: 240px;
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid rgba(142, 73, 94, 0.18);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--text);
+  resize: vertical;
+}
+
+.editor-panel__textarea:focus {
+  outline: none;
+  border-color: rgba(142, 73, 94, 0.45);
+  box-shadow: 0 0 0 5px rgba(142, 73, 94, 0.12);
+}
+
+.editor-panel__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.editor-panel__message {
+  margin: 12px 0 0;
+  min-height: 24px;
+}
+
+.gallery-panel {
+  scroll-margin-top: 24px;
 }
 
 .gallery {
@@ -337,6 +389,58 @@ input {
   background: var(--accent);
 }
 
+.upload-panel__content {
+  margin-top: 24px;
+}
+
+.upload-panel__intro,
+.upload-panel__note,
+.upload-panel__dropzone-text {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.upload-panel__dropzone {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 28px;
+  border-radius: 24px;
+  border: 1px dashed rgba(142, 73, 94, 0.3);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.46), rgba(255, 255, 255, 0.24)),
+    rgba(255, 246, 242, 0.72);
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.upload-panel__dropzone:hover {
+  transform: translateY(-1px);
+  border-color: rgba(142, 73, 94, 0.44);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.32)),
+    rgba(255, 246, 242, 0.84);
+}
+
+.upload-panel__dropzone-title {
+  font-family: "Baskerville", "Palatino Linotype", serif;
+  font-size: 1.6rem;
+}
+
+.upload-panel__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.upload-panel__note {
+  margin: 14px 0 0;
+  font-size: 0.98rem;
+}
+
 .letter {
   position: relative;
   margin-top: 28px;
@@ -388,7 +492,6 @@ input {
 }
 
 @media (max-width: 900px) {
-  .hero,
   .gallery__stage {
     grid-template-columns: 1fr;
   }
@@ -405,15 +508,14 @@ input {
   }
 
   .gate__card,
-  .hero__text,
-  .hero__card,
   .panel,
   .letter {
     padding: 24px;
   }
 
   .gate__input-row,
-  .gallery__controls {
+  .gallery__controls,
+  .editor-panel__actions {
     flex-direction: column;
   }
 

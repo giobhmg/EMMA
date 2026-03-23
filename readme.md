@@ -16,11 +16,31 @@ Questo progetto e un sito statico pensato per essere eseguito in locale, senza d
    - `password`
    - `siteTitle`
    - `heroSubtitle`
-   - `heroQuote`
    - `gallery`
    - `letter`
 2. Sostituisci i file in `assets/photos/` con le tue foto e aggiorna i percorsi in `site-data.js`.
 3. Avvia un server statico locale oppure apri `index.html` nel browser.
+
+## Aggiungere foto dal sito
+
+Dopo aver inserito la password trovi anche una sezione `Aggiungi foto`.
+
+- Clicca nell'area dedicata
+- Seleziona una o piu immagini dal computer
+- Le foto verranno aggiunte subito alla galleria
+
+Nota: queste immagini caricate dal browser sono locali alla sessione corrente e non vengono salvate nei file del progetto. Se vuoi una versione definitiva da pubblicare, conviene comunque copiare le immagini dentro `assets/photos/` e aggiornare `site-data.js`.
+
+## Modificare la lettera dal sito
+
+Dopo l'accesso trovi subito la lettera.
+
+- Clicca `Modifica lettera`
+- Scrivi o incolla il testo nella casella
+- Metti ogni paragrafo su una riga separata
+- Premi `Salva`
+
+La modifica viene salvata solo nel browser locale. Se vuoi renderla definitiva nel progetto, aggiorna anche `site-data.js`.
 
 ## Esempio rapido con server locale
 

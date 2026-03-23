@@ -47,18 +47,57 @@
         </section>
 
         <section class="content hidden" id="content">
-          <header class="hero">
-            <div class="hero__text">
-              <p class="eyebrow">Per la persona che rende tutto piu bello</p>
-              <h1 id="site-title">Per Noi</h1>
-              <p class="hero__subtitle" id="site-subtitle"></p>
-            </div>
-            <div class="hero__card">
-              <p class="hero__quote" id="hero-quote"></p>
-            </div>
-          </header>
-
           <section class="panel gallery-panel" aria-labelledby="gallery-title">
+            <div class="section-heading">
+              <p class="eyebrow">Per la persona che rende tutto piu bello</p>
+              <h2 id="letter-title">Lettera</h2>
+              <div class="section-heading__actions">
+                <button
+                  class="button button--tiny button--ghost"
+                  type="button"
+                  id="edit-letter-button"
+                >
+                  Modifica lettera
+                </button>
+              </div>
+            </div>
+
+            <p class="letter-panel__intro" id="site-subtitle"></p>
+            <article class="letter" id="letter-body"></article>
+            <div class="letter-panel__footer">
+              <button
+                class="button button--primary"
+                type="button"
+                id="show-gallery-button"
+              >
+                Schiacciami e vedrai!
+              </button>
+            </div>
+          </section>
+
+          <section class="panel editor-panel hidden" id="letter-editor-panel" aria-labelledby="letter-editor-title">
+            <div class="section-heading">
+              <p class="eyebrow">Modifica locale</p>
+              <h2 id="letter-editor-title">Scrivi la tua lettera</h2>
+            </div>
+
+            <p class="editor-panel__intro">
+              Qui puoi cambiare il testo direttamente dal browser. Ogni paragrafo
+              deve stare su una riga separata.
+            </p>
+            <textarea class="editor-panel__textarea" id="letter-editor"></textarea>
+            <div class="editor-panel__actions">
+              <button class="button button--primary" type="button" id="save-letter-button">
+                Salva
+              </button>
+              <button class="button button--ghost" type="button" id="reset-letter-button">
+                Ripristina
+              </button>
+            </div>
+            <p class="editor-panel__message" id="letter-editor-message" aria-live="polite"></p>
+          </section>
+
+          <section class="panel gallery-panel" id="gallery-section" aria-labelledby="gallery-title">
             <div class="section-heading">
               <p class="eyebrow">I nostri momenti</p>
               <h2 id="gallery-title">Galleria fotografica</h2>
@@ -104,13 +143,38 @@
             </div>
           </section>
 
-          <section class="panel letter-panel" aria-labelledby="letter-title">
+          <section class="panel upload-panel" aria-labelledby="upload-title">
             <div class="section-heading">
-              <p class="eyebrow">Parole per te</p>
-              <h2 id="letter-title">Lettera</h2>
+              <p class="eyebrow">Personalizzazione locale</p>
+              <h2 id="upload-title">Aggiungi foto</h2>
             </div>
 
-            <article class="letter" id="letter-body"></article>
+            <div class="upload-panel__content">
+              <p class="upload-panel__intro">
+                Seleziona immagini dal tuo computer per aggiungerle subito alla
+                galleria. Funziona in locale, senza backend e senza database.
+              </p>
+
+              <label class="upload-panel__dropzone" for="photo-upload">
+                <span class="upload-panel__dropzone-title">Scegli le foto</span>
+                <span class="upload-panel__dropzone-text">
+                  Puoi selezionare piu immagini insieme. Verranno mostrate nella
+                  gallery di questo browser.
+                </span>
+              </label>
+
+              <input
+                class="upload-panel__input"
+                id="photo-upload"
+                type="file"
+                accept="image/*"
+                multiple
+              />
+
+              <p class="upload-panel__note" id="upload-message" aria-live="polite">
+                Nessuna foto aggiunta per ora.
+              </p>
+            </div>
           </section>
         </section>
       </main>
