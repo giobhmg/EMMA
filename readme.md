@@ -4,7 +4,8 @@ Questo progetto e un sito statico pensato per essere eseguito in locale, senza d
 
 ## Struttura
 
-- `index.html`: struttura della pagina
+- `index.html`: pagina iniziale con password e lettera
+- `gallery.html`: pagina separata con la galleria fotografica
 - `styles.css`: stile romantico, elegante e responsive
 - `script.js`: password lato frontend, gallery e rendering della lettera
 - `site-data.js`: contenuti locali da personalizzare
@@ -16,6 +17,7 @@ Questo progetto e un sito statico pensato per essere eseguito in locale, senza d
    - `password`
    - `siteTitle`
    - `heroSubtitle`
+   - `galleryIntro`
    - `gallery`
    - `letter`
 2. Sostituisci i file in `assets/photos/` con le tue foto e aggiorna i percorsi in `site-data.js`.
@@ -41,6 +43,12 @@ Dopo l'accesso trovi subito la lettera.
 - Premi `Salva`
 
 La modifica viene salvata solo nel browser locale. Se vuoi renderla definitiva nel progetto, aggiorna anche `site-data.js`.
+
+## Flusso del sito
+
+- `index.html` mostra la password e poi la lettera
+- il bottone `Schiacciami e vedrai!` porta a `gallery.html`
+- `gallery.html` mostra solo la pagina delle foto
 
 ## Esempio rapido con server locale
 

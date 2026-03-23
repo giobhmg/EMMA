@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>I Nostri Ricordi</title>
+    <meta
+      name="description"
+      content="Una galleria romantica e privata, custodita dietro password."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="gallery">
+    <div class="page-shell">
+      <div class="background-glow background-glow-one"></div>
+      <div class="background-glow background-glow-two"></div>
+
+      <main class="app">
+        <section class="gate" id="gate" aria-labelledby="gate-title">
+          <div class="gate__card">
+            <p class="eyebrow">Uno spazio creato solo per voi due</p>
+            <h1 id="gate-title">Benvenuta nei nostri ricordi</h1>
+            <p class="gate__intro">
+              Inserisci la password per aprire la pagina dedicata alle vostre
+              foto.
+            </p>
+
+            <form class="gate__form" id="password-form">
+              <label class="gate__label" for="password-input">Password</label>
+              <div class="gate__input-row">
+                <input
+                  class="gate__input"
+                  id="password-input"
+                  name="password"
+                  type="password"
+                  placeholder="Scrivi la password"
+                  autocomplete="current-password"
+                  required
+                />
+                <button class="button button--primary" type="submit">
+                  Entra
+                </button>
+              </div>
+              <p class="gate__hint" id="password-message" aria-live="polite"></p>
+            </form>
+          </div>
+        </section>
+
+        <section class="page-content hidden" id="content">
+          <section class="page-hero page-hero--compact">
+            <p class="eyebrow">I nostri momenti</p>
+            <h1 class="page-title">Le nostre foto</h1>
+            <p class="page-subtitle" id="gallery-intro"></p>
+            <div class="page-hero__actions">
+              <a class="button button--ghost" href="./index.html">Torna alla lettera</a>
+            </div>
+          </section>
+
+          <section class="panel gallery-panel" aria-labelledby="gallery-title">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Galleria privata</p>
+                <h2 id="gallery-title">Scorri i nostri ricordi</h2>
+              </div>
+            </div>
+
+            <div class="gallery">
+              <div class="gallery__stage">
+                <div class="gallery__image-frame">
+                  <img id="gallery-image" class="gallery__image" src="" alt="" />
+                </div>
+                <div class="gallery__copy">
+                  <p class="gallery__index" id="gallery-index"></p>
+                  <h3 class="gallery__caption" id="gallery-caption"></h3>
+                  <p class="gallery__description" id="gallery-description"></p>
+                </div>
+              </div>
+
+              <div class="gallery__controls">
+                <button
+                  class="button button--ghost"
+                  type="button"
+                  id="prev-button"
+                  aria-label="Foto precedente"
+                >
+                  Precedente
+                </button>
+                <button
+                  class="button button--ghost"
+                  type="button"
+                  id="next-button"
+                  aria-label="Foto successiva"
+                >
+                  Successiva
+                </button>
+              </div>
+
+              <div class="gallery__dots" id="gallery-dots" aria-label="Seleziona una foto"></div>
+            </div>
+          </section>
+
+          <section class="panel upload-panel" aria-labelledby="upload-title">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Aggiungi nuovi ricordi</p>
+                <h2 id="upload-title">Carica altre foto</h2>
+              </div>
+            </div>
+
+            <p class="section-copy">
+              Se vuoi, puoi aggiungere immagini dal computer in modo locale e
+              vederle subito nella gallery di questo browser.
+            </p>
+
+            <label class="upload-panel__dropzone" for="photo-upload">
+              <span class="upload-panel__dropzone-title">Scegli le foto</span>
+              <span class="upload-panel__dropzone-text">
+                Seleziona una o piu immagini. Non viene usato nessun database.
+              </span>
+            </label>
+
+            <input
+              class="upload-panel__input"
+              id="photo-upload"
+              type="file"
+              accept="image/*"
+              multiple
+            />
+
+            <p class="upload-panel__note" id="upload-message" aria-live="polite">
+              Nessuna foto aggiunta per ora.
+            </p>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="./site-data.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
